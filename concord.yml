@@ -1,13 +1,58 @@
 configuration:
   dependencies:
   - mvn://com.walmartlabs.concord.plugins:jenkins-task:1.30.0
+  arguments:
+    todoId: "1"
+    myVar: "world"
+    baseUrl: "http://104.214.35.206:8080/"
+    username: "jdominguez"
+    apiToken: "1177dcbd55b3f0b60ae190fd1b5e62aea0"
+    author: "Damys"
+
 flows:
+  #onPush:
   default:
-  - task: jenkins
-    in:
-      baseUrl: "http://13.58.118.218:8080/"
-      username: "admin"
-      apiToken: "1195950eb9020f34ad03c1052df02f1685"
-      jobName: "test-apk"  
-  
-  
+    - call: looperflow
+
+  looperflow:
+    - try:
+      - log: "Starting CI JOBS!!!!!!"
+      - log: "Starting Peer Review!!!!!!"
+      - call: jenkinsjob
+        in:
+          taskName: "peerReview"
+          jobName: "PeerReview"
+      - log: "Starting Regretion Testing!!!!!!"
+      - call: jenkinsjob
+        in:
+          taskName: "RegresionTesting"
+          jobName: "RegretionTesting"
+      - log: "Building!!!!!!"
+      - call: jenkinsjob
+        in:
+          taskName: "Build"
+          jobName: "Build"
+      - log: "Starting Notify from Email!!!!!!"  
+      - call: sendEmail
+        in:
+          iconEmoji: ":thumbs-up-green:"
+          bodyMesage: "Don't Fear Of Success Buddy!!"
+      error:
+        - throw: "oh, something went wrong."
+
+  jenkinsjob:
+    - log: This is the ${taskName}
+    - task: jenkins
+      in:
+        baseUrl: ${baseUrl}
+        username: ${username}
+        apiToken: ${apiToken}
+        jobName: ${jobName}
+        sync: true
+    - log: "Build #${jenkinsJob.buildNumber} - ${jenkinsJob.status}"
+    - if: ${jenkinsJob.status == "SUCCESS"}
+      then:
+        - log: "Looper job executed successfully..."
+      else:
+          - log: "Looper job execution was not successful..."
+          - exit 1
