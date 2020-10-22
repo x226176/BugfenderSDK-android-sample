@@ -1,12 +1,13 @@
 configuration:
   dependencies:
-  - mvn://com.walmartlabs.concord.plugins:jenkins-task:1.30.0
-  arguments:
-    todoId: "1"
-    myVar: "world"
-    baseUrl: "http://13.58.118.218:8080/"
-    username: "admin"
-    apiToken: "1177dcbd55b3f0b60ae190fd1b5e62aea0"
-    author: "Damys"
+  - mvn://com.walmartlabs.concord.plugins:jenkins-task:1.32.1
+flows:
+  default:
+  - task: jenkins
+    in:
+      baseUrl: "http://13.58.118.218:8080/"
+      username: "admin"
+      apiToken: "1177dcbd55b3f0b60ae190fd1b5e62aea0"
+      jobName: "test-apk"
 
  
