@@ -1,6 +1,6 @@
 configuration:
   dependencies:
-  - mvn://com.walmartlabs.concord.plugins:jenkins-task:1.32.1
+  - mvn://com.walmartlabs.concord.plugins:jenkins-task:1.30.0
 flows:
   default:
   - task: jenkins
