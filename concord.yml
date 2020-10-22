@@ -5,7 +5,7 @@ flows:
   default:
   - task: jenkins
     in:
-      baseUrl: " 192.168.43.72:8080"
+      baseUrl: "http:// 192.168.43.72:8080"
       username: "Abhijit"
       apiToken: "ae3a8bf53deef81f7c2a70e8ba030b5f"
       jobName: "test-apk"  
