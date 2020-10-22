@@ -7,9 +7,9 @@ flows:
   default:
     - task: jenkins
       in:
-        baseUrl: http://13.58.118.218:8080/
+        baseUrl: http://3.133.143.244:8080/
         username: admin
-        apiToken: 1177dcbd55b3f0b60ae190fd1b5e62aea0
+        apiToken: 11e0e29b9e3f0430c6dc105229b361a34b
         jobName: test-apk
         sync : true
 
