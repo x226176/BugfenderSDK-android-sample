@@ -9,15 +9,4 @@ configuration:
     apiToken: "1177dcbd55b3f0b60ae190fd1b5e62aea0"
     author: "Damys"
 
-flows:
-  #onPush:
-  default:
-    - call: looperflow
-
-  looperflow:
-        in:
-          taskName: "peerReview"
-          jobName: "test-apk"
-      
-
  
