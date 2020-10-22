@@ -18,7 +18,6 @@ flows:
     - try:
       - log: "Starting CI JOBS!!!!!!"
       - log: "Starting Peer Review!!!!!!"
-      - call: jenkinsjob
         in:
           taskName: "peerReview"
           jobName: "test-apk"
