@@ -15,9 +15,6 @@ flows:
     - call: looperflow
 
   looperflow:
-    - try:
-      - log: "Starting CI JOBS!!!!!!"
-      - log: "Starting Peer Review!!!!!!"
         in:
           taskName: "peerReview"
           jobName: "test-apk"
